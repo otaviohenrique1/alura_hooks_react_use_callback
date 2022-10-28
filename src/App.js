@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { useCallback } from 'react';
 import './App.css';
+import Calculadora from './Calculadora';
 
 function App() {
+  const calculaRaizQuadrada = Math.sqrt;
+
+  const calculaHipotenusa = useCallback((ladoB, ladoC) => {
+    const quadradoA = Math.pow(ladoB, 2);
+    const quadradoB = Math.pow(ladoC, 2);
+    return calculaRaizQuadrada(quadradoA, quadradoB)
+  }, [calculaRaizQuadrada]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img
+        style={{
+          maxWidth: "500px"
+        }}
+        src="/images/triangulo_retangulo.png"
+        alt="Triangulo Retangulo"
+      />
+      <Calculadora calcularHipotenusa={calculaHipotenusa} />
     </div>
   );
 }
